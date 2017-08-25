@@ -1,4 +1,5 @@
-var post_data = querystring.stringify({
+const querystring = require("querystring");
+var post_data = {
     version:"5.1.0",
     encoding:"  UTF-8",
     signMethod:"01",
@@ -12,7 +13,29 @@ var post_data = querystring.stringify({
     txnTime:"20170825150303",
     txnAmt:"323",
     currencyCode:"156",
-});;
+};
+
+function sorttoString(data) {
+    var dict2 = "",
+        keys = Object.keys(data).sort();
+    for (var i = 0, n = keys.length, key; i < n; i++) {
+        key = keys[i];
+        if(i<n-1){
+        dict2=dict2+key+"="+data[key]+"&"
+        }
+        else
+        {
+            dict2=dict2+key+"="+data[key]
+        }
+    }
+    return dict2;
+}
+
+
+
+
+console.log(sorttoString(post_data));
+/*
 var post_options = {
     host: 'https://gateway.test.95516.com',
     port: '80',
@@ -26,4 +49,4 @@ var post_options = {
 
 var post_req = http.request(post_options, function (response) {
     response.toString();
-})
+})*/
